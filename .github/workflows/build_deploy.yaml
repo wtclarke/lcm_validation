@@ -1,0 +1,59 @@
+name: build-and-deploy-pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  # Build job
+  build:
+    # At a minimum this job should upload artifacts using actions/upload-pages-artifact
+    runs-on: ubuntu-latest
+    concurrency: ci-${{ github.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup conda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: build_env
+          auto-update-conda: true
+          channels: conda-forge, defaults
+          python-version: 3.8
+
+      - name: Install packages
+        shell: bash -l {0}
+        run: conda install numpy matplotlib pandas jinja2 seaborn
+
+      - name: Build
+        shell: bash -l {0}
+        run: |
+          conda activate build_env
+          python main.py
+
+      - name: Upload
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./html
+
+  # Deploy job
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1

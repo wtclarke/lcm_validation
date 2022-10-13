@@ -1,0 +1,9 @@
+{
+    "package": "FSL-MRS",
+    "notes_1": "Metropolis-Hastings algorithm",
+    "notes_2": "Voigt model",
+    "validation_history": {
+        "1.1.10": "First version",
+        "2.0.3": "Update to validation baseline fitting options."
+    }
+}

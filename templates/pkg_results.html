@@ -1,0 +1,35 @@
+{# pkg_results.html #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ package }}</title>
+</head>
+
+<body>
+  <h1>{{ package }}</h1>
+  <h2>Validation of the {{ package }}: {{ notes_1 }} package</h2>
+  <b>{{ notes_2 }}</b>
+
+  <div>
+    <a href="index.html">Main menu</a>
+  </div>
+  
+  <h2>Version Timeline</h2>
+    <h3>Percentage Error</h3>
+    <img src="{{ per_error }}" alt="Percentage error for each version">
+
+    <h3>mM Error</h3>
+    <img src="{{ mm_error }}" alt="mM error for each version">
+
+  <h2>Detailed results of most recent version</h2>
+  <b>Current version: {{ current_version }}</b>
+   <h3>Summary</h3>
+   <img src="{{ matrix_plot }}" alt="All metabolite/dataset errors">
+
+   <h3>Per-metabolite errors</h3>
+   <img src="{{ metabolite_plots }}" alt="Selected metabolite-specific errors">
+  
+</body>
+</html>

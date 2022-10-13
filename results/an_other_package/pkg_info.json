@@ -1,0 +1,9 @@
+{
+    "package": "AN Other MRS package",
+    "notes_1": "Gaussian model",
+    "notes_2": "",
+    "validation_history": {
+        "0.0.0": "Pre-release tests",
+        "1.1.0": "Update to water integral limits."
+    }
+}

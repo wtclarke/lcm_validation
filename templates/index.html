@@ -1,0 +1,42 @@
+{# index.html #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LCM Packages Index</title>
+</head>
+
+<body>
+  <h1>Long term validation of MRS fitting packages</h1>
+    <div>
+        <h2>Purpose</h2>
+        <p>
+            This website tracts the long term stability of Linear combination fitting packages. 
+            The packages are evaluated against the ISMRM MRS study group Fitting Challenge dataset.
+            <br>
+            <em>Marjańska, M, Deelchand, DK, Kreis, R.<br>
+            Results and interpretation of a fitting challenge for MR spectroscopy set up by the MRS study group of ISMRM.<br>
+            Magn Reson Med. 2021; 87: 11-32.<br></em>
+            <a href="https://doi.org/10.1002/mrm.28942"> 10.1002/mrm.28942</a>
+            <a href="https://github.com/wtclarke/mrs_fitting_challenge"> Github repository of data</a>
+        </p>
+        <h2>Adding your package</h2>
+        <p>To DO</p>
+    </div>
+    <div>
+    <h2>Packages</h2>
+        <ul>
+        {% for package in packages %}
+        <li>
+            <a href="{{ package.link }}">{{ package.package }}({{ package.notes_1 }})</a>
+        </li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h2>Summary Figure</h2>
+        <b>TO DO</b>
+    </div>
+</body>
+</html>
