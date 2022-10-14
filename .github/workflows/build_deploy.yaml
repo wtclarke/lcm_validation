@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, reopened]
 jobs:
   # Build job
   build:
@@ -40,6 +42,9 @@ jobs:
   deploy:
     # Add a dependency to the build job
     needs: build
+
+    # Only run deploy on 'main' branch
+    if: github.ref == 'refs/heads/main'
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
