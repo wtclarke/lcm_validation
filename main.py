@@ -5,7 +5,7 @@ Copyright William Clarke, University of Oxford, 2022
 
 from pathlib import Path
 import json
-from distutils.version import StrictVersion
+from distutils.version import LooseVersion
 
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader
@@ -22,7 +22,7 @@ for fp in res_dir.rglob('pkg_info.json'):
     current_dict['location'] = str(fp.parent)
     current_dict['name'] = str(fp.parent.stem)
     ver_list = [x.stem.replace('_', '.') for x in fp.parent.glob('*.gz')]
-    ver_list.sort(key=StrictVersion)
+    ver_list.sort(key=LooseVersion)
     current_dict['versions'] = ver_list
     current_dict['current_version'] = ver_list[-1]
     pkg_list.append(current_dict)
